@@ -1,6 +1,6 @@
 # Simple Rock Paper Scissors game
 ## How to use? 
-> Clone the git repo ```cd Rock-Paper-Scissors && node server.js```
+> Clone the git repo ```cd MiniProjects && node server.js```
 ## Make sure you have node js installed. Else it won't work. 😅
 
 > [!NOTE]
@@ -18,7 +18,6 @@
 
 ### Please give it a star if you find some value from the repo
 
-> [!NOTE]
 > This repo is a for educational purposes only, it's not production ready by any means. 
 
 </details>
