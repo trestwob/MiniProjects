@@ -74,12 +74,7 @@ li:last-child {
     border-bottom: none;
 }
 
-.task-text {
-    font-size: 16px;
-    color: #570019;
-}
-
-.delete-button {
+.delete-btn {
     background: #ffd7e9;
     border: none;
     border-radius: 4px;
@@ -90,7 +85,7 @@ li:last-child {
     transition: background-color 0.3s ease;
 }
 
-.delete-button:hover {
+.delete-btn:hover {
     background-color: #FB3982;
     color: #FEF1F6;
 }

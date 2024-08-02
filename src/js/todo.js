@@ -2,6 +2,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const addTaskBtn = document.getElementById('input-button');
     const taskInput = document.getElementById('todo-input');
     const taskList = document.getElementById('todo-list');
+    
+    function loadTasks() {
+        const tasks = JSON.parse(localStorage.getItem('tasklist')) || [];
+        tasks.foreach(taskText => { //debug here
+            const taskElement = createTaskElement(taskText);
+            taskList.appendChild(taskElement);
+        })
+    }
+
+    function saveTasks() {
+        const tasks = [];
+        taskList.querySelectorAll('li').forEach(li => {
+            tasks.push(li.textContent.replace('Delete', '').trim());
+        });
+        localStorage.setItem('tasklist', JSON.stringify(tasks));
+//        console.log(tasks);
+    } 
+
 
     function createTaskElement(taskText) {
         const li = document.createElement('li');
@@ -12,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         deleteBtn.className = 'delete-btn';
         deleteBtn.addEventListener('click', () => {
             taskList.removeChild(li);
+            saveTasks();
         });
 
         li.appendChild(deleteBtn);
@@ -24,7 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const taskElement = createTaskElement(taskText);
             taskList.appendChild(taskElement);
             taskInput.value = '';
+            saveTasks();
         }
+
     });
 
     taskInput.addEventListener('keypress', (event) => {
@@ -32,4 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
             addTaskBtn.click();
         }
     });
+
+    loadTasks();
 });
