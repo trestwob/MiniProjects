@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function loadTasks() {
         const tasks = JSON.parse(localStorage.getItem('tasklist')) || [];
-        tasks.foreach(taskText => { //debug here
+        tasks.forEach(taskText => { //debug here
             const taskElement = createTaskElement(taskText);
             taskList.appendChild(taskElement);
         })
