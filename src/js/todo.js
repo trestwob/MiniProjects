@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     const addTaskBtn = document.getElementById('input-button');
     const taskInput = document.getElementById('todo-input');
+    const taskInputDate = document.getElementById('date-input');
     const taskList = document.getElementById('todo-list');
     
     function loadTasks() {
         const tasks = JSON.parse(localStorage.getItem('tasklist')) || [];
-        tasks.forEach(taskText => { //debug here
+        tasks.forEach(taskText => {
             const taskElement = createTaskElement(taskText);
             taskList.appendChild(taskElement);
         })
@@ -17,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
             tasks.push(li.textContent.replace('Delete', '').trim());
         });
         localStorage.setItem('tasklist', JSON.stringify(tasks));
-//        console.log(tasks);
     } 
 
 
@@ -38,14 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     addTaskBtn.addEventListener('click', () => {
-        const taskText = taskInput.value.trim();
+        const taskText = `${taskInput.value.trim() + " -> Due date: " + taskInputDate.value.trim()}`;
         if (taskText !== '') {
             const taskElement = createTaskElement(taskText);
             taskList.appendChild(taskElement);
             taskInput.value = '';
+            taskInputDate.value = '';
             saveTasks();
         }
-
     });
 
     taskInput.addEventListener('keypress', (event) => {
