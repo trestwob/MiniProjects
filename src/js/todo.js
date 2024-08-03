@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //load the tasks and call createlement to provide the classnames
     function loadTasks() {
-        console.log(JSON.parse(localStorage.getItem('tasklist')));
         const tasks = JSON.parse(localStorage.getItem('tasklist')) || [];
         tasks.forEach(taskText => {
             const taskElement = createTaskElement(taskText.taskName, taskText.taskDate);
@@ -23,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
             tasks.push({taskName, taskDate});
         });
 
-        console.log(tasks);
         localStorage.setItem('tasklist', JSON.stringify(tasks));
     } 
 
