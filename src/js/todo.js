@@ -4,27 +4,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskInputDate = document.getElementById('date-input');
     const taskList = document.getElementById('todo-list');
     
+
+    //load the tasks and call createlement to provide the classnames
     function loadTasks() {
+        console.log(JSON.parse(localStorage.getItem('tasklist')));
         const tasks = JSON.parse(localStorage.getItem('tasklist')) || [];
         tasks.forEach(taskText => {
-            const taskElement = createTaskElement(taskText);
+            const taskElement = createTaskElement(taskText.taskName, taskText.taskDate);
             taskList.appendChild(taskElement);
         })
     }
-
+    //saves the task under two variables of the classnames
     function saveTasks() {
         const tasks = [];
         taskList.querySelectorAll('li').forEach(li => {
-            tasks.push(li.textContent.replace('Delete', '').trim());
+            taskName = li.querySelector('.task-name').textContent.trim();
+            taskDate = li.querySelector('.task-due-date').textContent.trim();
+            tasks.push({taskName, taskDate});
         });
+
+        console.log(tasks);
         localStorage.setItem('tasklist', JSON.stringify(tasks));
     } 
 
-
-    function createTaskElement(taskText) {
+    // create two spam within li
+    function createTaskElement(taskText, taskDueDate) {
         const li = document.createElement('li');
-        li.textContent = taskText;
+        //add span here 
 
+        const taskName = document.createElement('span');
+        taskName.className = 'task-name';
+        taskName.textContent = taskText;
+
+        const taskDate = document.createElement('span');
+        taskDate.className = 'task-due-date';
+        taskDate.textContent = taskDueDate;
+        
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = 'Delete';
         deleteBtn.className = 'delete-btn';
@@ -32,22 +47,26 @@ document.addEventListener('DOMContentLoaded', () => {
             taskList.removeChild(li);
             saveTasks();
         });
-
+        li.appendChild(taskName);
+        li.appendChild(taskDate);
         li.appendChild(deleteBtn);
         return li;
     }
+    
 
+    // create element with two variables 
     addTaskBtn.addEventListener('click', () => {
-        const taskText = `${taskInput.value.trim() + " -> Due date: " + taskInputDate.value.trim()}`;
+        const taskText = taskInput.value.trim();
+        const taskDate = taskInputDate.value.trim();
         if (taskText !== '') {
-            const taskElement = createTaskElement(taskText);
+            const taskElement = createTaskElement(taskText, taskDate);
             taskList.appendChild(taskElement);
             taskInput.value = '';
             taskInputDate.value = '';
             saveTasks();
         }
     });
-
+    //enter key creates the elements again, same as previous
     taskInput.addEventListener('keypress', (event) => {
         if (event.key === 'Enter') {
             addTaskBtn.click();
