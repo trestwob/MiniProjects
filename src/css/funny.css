@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+#box {
+    text-align: center;
+    background: #ffd1dc;
+    height: 500px; 
+    width: 800px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+button {
+    position: relative;
+    width: 120px;
+    height: 50px;
+    background-color: #fc6c85;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    transition: transform 0.3s ease;
+}
+
+#yes {
+    left: 10px;
+
+}
+
+#no {
+    right: 10px;
+}
+
+#answer {
+    font-size: xxx-large;
+}
