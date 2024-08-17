@@ -3,7 +3,7 @@
 > Clone the git repo ```cd MiniProjects && node server.js```
 ## Make sure you have node js installed. Else it won't work. 😅
 
-[Try out the website](https://concurrentshell.github.io/MiniProjects/) 
+[Try out the website](https://trestwob.github.io/MiniProjects/) 
 
 > [!NOTE]
 > This repo holds some basic js programs that may be helpful to learn js html and css
